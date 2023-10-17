@@ -4,6 +4,7 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"math/rand"
+	"time"
 )
 
 // 常用函数
@@ -34,4 +35,28 @@ func Md5(input string) string {
 	hasher.Write([]byte(input))
 	hashBytes := hasher.Sum(nil)
 	return hex.EncodeToString(hashBytes)
+}
+
+// StringDateToTime 日期字符串转秒时间戳
+func StringDateToTime(localTime string) (int64, error) {
+
+	TimeLocation, _ := time.LoadLocation("Asia/Shanghai")
+	// 解析时间字符串为time.Time对象
+	t, err := time.ParseInLocation(time.DateOnly, localTime, TimeLocation)
+	if err != nil {
+		return 0, err
+	}
+	return t.Unix(), nil
+}
+
+// StringDateTimeToTime 日期时间字符串转秒时间戳
+func StringDateTimeToTime(localTime string) (int64, error) {
+
+	TimeLocation, _ := time.LoadLocation("Asia/Shanghai")
+	// 解析时间字符串为time.Time对象
+	t, err := time.ParseInLocation(time.DateTime, localTime, TimeLocation)
+	if err != nil {
+		return 0, err
+	}
+	return t.Unix(), nil
 }

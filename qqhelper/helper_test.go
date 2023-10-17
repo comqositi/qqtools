@@ -29,3 +29,21 @@ func TestMd5(t *testing.T) {
 		t.Errorf("md5 error %s", res)
 	}
 }
+
+func TestAAA(t *testing.T) {
+	str := "2023-10-18"
+	res, err := StringDateToTime(str)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(res)
+}
+
+func TestStringDateTimeToTime(t *testing.T) {
+	str := "2023-10-18 15:12:13"
+	res, err := StringDateTimeToTime(str)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(res)
+}
